@@ -1,0 +1,6 @@
+FareWindow test excerpt: SEPTA Bus and Metro transfers
+Official reference: https://www.septa.org/fares/
+
+Scope: transfers between SEPTA Bus and Metro services. Transfers involving Regional Rail are not covered by this rule.
+
+Riders using a SEPTA Key card or contactless payment with a credit or debit card can make up to two transfers for free. These transfers must be made within two hours of the first tap. The same card must be used for all segments of the trip. Riders paying with cash or Quick Trip are not eligible for free transfers.
