@@ -191,3 +191,27 @@ def test_transfer_at_exact_window_boundary_is_free(direct_vm, direct_deploy):
     )
 
     assert result["outcome"] == "FREE_TRANSFER"
+def test_different_payment_method_is_rejected(direct_vm, direct_deploy):
+    contract = deploy(direct_deploy)
+    register_example(contract)
+    mock_policy_page(direct_vm)
+    direct_vm.mock_llm(r".*", json.dumps(SUPPORTED_RULE))
+
+    interpreted = json.loads(contract.interpret_policy(POLICY_ID))
+    assert interpreted["status"] == "ACTIVE"
+
+    result = json.loads(
+        contract.check_transfer(
+            "transfer-different-payment-method",
+            POLICY_ID,
+            60,
+            1,
+            "BUS",
+            "METRO",
+            "SEPTA_KEY",
+            False,
+        )
+    )
+
+    assert result["outcome"] == "FARE_APPLIES"
+    assert result["reason"] == "same payment method required"
